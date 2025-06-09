@@ -11,7 +11,7 @@ const ProjectCard = ({ description, title, icon }) => {
       </div>
 
       <div className="h-40">
-        <p className="text-slate-600">{description}</p>
+        <p className="text-slate-600 inter-300">{description}</p>
       </div>
       <div className="flex-1 items-center justify-center pb-4">
         <button

@@ -12,7 +12,7 @@ const Projects = () => {
         <h1 className="text-3xl sm:text-4xl font-semibold text-slate-800 mb-6">
           Projects
         </h1>
-        <p className="text-lg text-gray-600 max-w-[700px] mx-auto">
+        <p className="text-gray-600 max-w-[700px] mx-auto inter-300 text-lg">
           Berikut adalah beberapa proyek yang telah saya kerjakan, termasuk
           aplikasi web, aplikasi mobile, dan layanan backend.
         </p>
