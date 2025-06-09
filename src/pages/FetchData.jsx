@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {
+  ButtonDelete,
+  ButtonEdit,
+  ButtonFetch,
+  ButtonSave,
+} from '../components/Buttons';
+import { InputEdit } from '../components/Inputs';
 
 const CustomerTable = () => {
   const [customers, setCustomers] = useState([]);
@@ -24,12 +31,15 @@ const CustomerTable = () => {
       setEditId(null);
     } catch (err) {
       console.error(err);
-      setError('Gagal mengambil data pelanggan');
+      setError(
+        'Gagal mengambil data pelanggan, silahkan login terlebih dahulu!'
+      );
     }
   };
 
   useEffect(() => {
-    fetchCustomers();
+    // fetchCustomers();
+    localStorage.removeItem('token');
   }, []);
 
   const handleEditClick = (customer) => {
@@ -96,7 +106,7 @@ const CustomerTable = () => {
               <th className="p-4 w-40">Aksi</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-neutral-300">
+          <tbody className="divide-y divide-neutral-300 border-y border-slate-300">
             {customers.map((customer) => (
               <tr key={customer.customer_id}>
                 <td className="p-4">{customer.customer_id}</td>
@@ -104,36 +114,24 @@ const CustomerTable = () => {
                 {/* Jika baris ini sedang diedit, tampilkan input */}
                 {editId === customer.customer_id ? (
                   <>
-                    <td className="p-4">
-                      <input
-                        type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                        value={editData.name}
-                        onChange={(e) =>
-                          handleInputChange('name', e.target.value)
-                        }
-                      />
-                    </td>
-                    <td className="p-4">
-                      <input
-                        type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                        value={editData.phone}
-                        onChange={(e) =>
-                          handleInputChange('phone', e.target.value)
-                        }
-                      />
-                    </td>
-                    <td className="p-4">
-                      <input
-                        type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                        value={editData.address}
-                        onChange={(e) =>
-                          handleInputChange('address', e.target.value)
-                        }
-                      />
-                    </td>
+                    <InputEdit
+                      value={editData.name}
+                      onChange={(e) =>
+                        handleInputChange('name', e.target.value)
+                      }
+                    />
+                    <InputEdit
+                      value={editData.phone}
+                      onChange={(e) =>
+                        handleInputChange('phone', e.target.value)
+                      }
+                    />
+                    <InputEdit
+                      value={editData.address}
+                      onChange={(e) =>
+                        handleInputChange('address', e.target.value)
+                      }
+                    />
                   </>
                 ) : (
                   <>
@@ -145,29 +143,13 @@ const CustomerTable = () => {
 
                 <td className="p-4 flex gap-2">
                   {editId === customer.customer_id ? (
-                    <button
-                      type="button"
-                      className="hover:cursor-pointer rounded-sm px-3 py-1.5 text-sm inter-500 text-teal-500 bg-white border border-teal-500 hover:bg-teal-50 transition-colors"
-                      onClick={handleSaveClick}
-                    >
-                      Save
-                    </button>
+                    <ButtonSave onClick={handleSaveClick} />
                   ) : (
                     <>
-                      <button
-                        type="button"
-                        className="hover:cursor-pointer rounded-sm px-2 py-1 text-sm inter-400 text-sky-600 border border-sky-600 hover:bg-blue-50"
-                        onClick={() => handleEditClick(customer)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        className="hover:cursor-pointer rounded-sm px-2 py-1 text-sm inter-400 text-pink-600 border border-pink-600 bg-white hover:bg-red-50 transition-colors"
+                      <ButtonEdit onClick={() => handleEditClick(customer)} />
+                      <ButtonDelete
                         onClick={() => handleDeleteClick(customer.customer_id)}
-                      >
-                        Delete
-                      </button>
+                      />
                     </>
                   )}
                 </td>
@@ -176,19 +158,10 @@ const CustomerTable = () => {
           </tbody>
         </table>
 
-        {error && <div className="p-4 text-red-500">{error}</div>}
+        {error && <div className="p-4 text-pink-600 inter-300">{error}</div>}
 
         {/* Tombol muat ulang hanya muncul kalau gak sedang edit */}
-        {!editId && (
-          <div className="p-4 flex items-center justify-center">
-            <button
-              onClick={fetchCustomers}
-              className="mt-2 rounded-md bg-sky-500 px-4 py-2 text-white hover:bg-sky-600 hover:cursor-pointer inter-400"
-            >
-              Muat Ulang
-            </button>
-          </div>
-        )}
+        {!editId && <ButtonFetch onClick={fetchCustomers} />}
       </div>
     </div>
   );
