@@ -2,7 +2,7 @@ const Hero = () => {
   return (
     <div>
       <section id="about">
-        <div className="sm:w-full w-4/5 max-w-[1200px] mx-auto">
+        <div className="sm:w-full w-4/5 max-w-[1200px] mx-auto pb-20">
           <div className="sm:w-50 sm:h-50 w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-slate-800 shadow-lg">
             <img
               src="https://bxehantrfbyenzvyrfoc.supabase.co/storage/v1/object/public/merge-bucket//fotoku.jpg"
@@ -20,14 +20,6 @@ const Hero = () => {
               (Golang) to build robust REST APIs.
             </p>
           </div>
-        </div>
-        <div className="flex items-center justify-center mt-10">
-          <button
-            type="button"
-            className="rounded-full shadow-md bg-info border border-info px-6 py-2 text-sm font-medium tracking-wide text-onInfo transition-colors duration-200 hover:bg-teal-400 hover:text-white text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-info active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed hover:cursor-pointer"
-          >
-            View Projects
-          </button>
         </div>
       </section>
     </div>
