@@ -1,8 +1,8 @@
 import ProjectCard from '../components/ProjectCard';
-import { descCrud, myImg } from '../path/path';
+import { descCrud, myImg, descProjects } from '../path/path';
 import TechIcons from '../components/Icons';
 
-const Projects = () => {
+const Projects = ({ scrollToSection, crudRef }) => {
   return (
     <section
       id="projects"
@@ -13,8 +13,7 @@ const Projects = () => {
           Projects
         </h1>
         <p className="text-gray-600 max-w-[700px] mx-auto inter-300 text-lg">
-          Berikut adalah beberapa proyek yang telah saya kerjakan, termasuk
-          aplikasi web, aplikasi mobile, dan layanan backend.
+          {descProjects}
         </p>
 
         <div className="mt-10 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex items-center justify-center sm:flex-row flex-col">
@@ -23,6 +22,7 @@ const Projects = () => {
             title="CRUD Data Management"
             description={descCrud}
             icon={<TechIcons />}
+            onViewProjectClick={() => scrollToSection(crudRef)}
           />
           <ProjectCard image="/images/image2.jpg" />
           <ProjectCard image="/images/image3.jpg" />

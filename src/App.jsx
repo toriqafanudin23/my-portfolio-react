@@ -2,12 +2,15 @@ import { useRef } from 'react';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Header from './components/Header';
+import CrudDataManagement from './pages/Crud';
+import CustomerTable from './pages/FetchData';
 
 function App() {
   const homeRef = useRef(null);
   const projectsRef = useRef(null);
   const educationRef = useRef(null);
   const orderRef = useRef(null);
+  const crudRef = useRef(null);
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -30,6 +33,9 @@ function App() {
             case 'Order':
               scrollToSection(orderRef);
               break;
+            case 'CRUD':
+              scrollToSection(crudRef);
+              break;
             default:
               break;
           }
@@ -40,7 +46,7 @@ function App() {
         <Home />
       </div>
       <div ref={projectsRef}>
-        <Projects />
+        <Projects scrollToSection={scrollToSection} crudRef={crudRef} />
       </div>
       <div ref={orderRef}>
         <div className="h-screen flex items-center justify-center bg-yellow-100">
@@ -50,6 +56,12 @@ function App() {
       <div ref={educationRef}>
         <div className="h-screen flex items-center justify-center bg-green-100">
           <h1 className="text-4xl">Education Section</h1>
+        </div>
+      </div>
+      <div ref={crudRef}>
+        <CrudDataManagement />
+        <div className="flex items-center justify-center">
+          <CustomerTable />
         </div>
       </div>
       <div className="flex items-center justify-center bg-slate-800 py-10 inter-300 text-white">

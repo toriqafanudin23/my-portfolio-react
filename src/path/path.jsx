@@ -184,3 +184,9 @@ export const myImg =
 
 export const descCrud =
   'Aplikasi CRUD full-stack yang dibangun menggunakan React untuk frontend, Golang untuk backend, dan PostgreSQL sebagai basis data. Dideploy pada server Ubuntu.';
+
+export const aboutMe =
+  'I am a freelancer specializing in developing web and mobile applications using React technology. On the backend, I use Go (Golang) to build robust REST APIs.';
+
+export const descProjects =
+  'Berikut adalah beberapa proyek yang telah saya kerjakan, berupa aplikasi web, aplikasi mobile, dan layanan backend.';
