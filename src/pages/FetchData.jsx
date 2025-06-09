@@ -92,7 +92,7 @@ const CustomerTable = () => {
               <th className="p-4 w-20">ID</th>
               <th className="p-4 w-48">Nama</th>
               <th className="p-4 w-48">No. HP</th>
-              <th className="p-4 w-60">Alamat</th>
+              <th className="p-4 w-48">Alamat</th>
               <th className="p-4 w-40">Aksi</th>
             </tr>
           </thead>
@@ -107,7 +107,7 @@ const CustomerTable = () => {
                     <td className="p-4">
                       <input
                         type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1"
+                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
                         value={editData.name}
                         onChange={(e) =>
                           handleInputChange('name', e.target.value)
@@ -117,7 +117,7 @@ const CustomerTable = () => {
                     <td className="p-4">
                       <input
                         type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1"
+                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
                         value={editData.phone}
                         onChange={(e) =>
                           handleInputChange('phone', e.target.value)
@@ -127,7 +127,7 @@ const CustomerTable = () => {
                     <td className="p-4">
                       <input
                         type="text"
-                        className="w-full rounded border border-gray-300 px-2 py-1"
+                        className="w-full rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-sky-500"
                         value={editData.address}
                         onChange={(e) =>
                           handleInputChange('address', e.target.value)
@@ -147,7 +147,7 @@ const CustomerTable = () => {
                   {editId === customer.customer_id ? (
                     <button
                       type="button"
-                      className="hover:cursor-pointer rounded-sm px-3 py-1.5 text-sm inter-500 text-amber-600 bg-white border border-amber-500 hover:bg-amber-100 transition-colors"
+                      className="hover:cursor-pointer rounded-sm px-3 py-1.5 text-sm inter-500 text-teal-500 bg-white border border-teal-500 hover:bg-teal-50 transition-colors"
                       onClick={handleSaveClick}
                     >
                       Save

@@ -30,7 +30,7 @@ const LoginPage = () => {
       // Redirect bisa dilakukan di sini (jika pakai react-router)
       // navigate("/dashboard");
     } catch (err) {
-      setError('Username atau password salah');
+      setError('Username atau password salah!');
     } finally {
       setLoading(false);
     }
@@ -76,7 +76,9 @@ const LoginPage = () => {
             />
           </div>
 
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          {error && (
+            <p className="text-pink-500 inter-400 text-sm mb-4">{error}</p>
+          )}
 
           <button
             type="submit"
