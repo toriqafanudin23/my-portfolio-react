@@ -94,74 +94,78 @@ const CustomerTable = () => {
   };
 
   return (
-    <div className="rounded-sm w-full sm:w-4/5 p-2 overflow-x-auto">
-      <div className="min-w-[640px]">
-        <table className="table-fixed w-full text-left text-slate-600 inter-300">
-          <thead className="inter-300 border-y border-slate-300 bg-slate-100 text-slate-700">
-            <tr>
-              <th className="p-4 w-20">ID</th>
-              <th className="p-4 w-48">Nama</th>
-              <th className="p-4 w-48">No. HP</th>
-              <th className="p-4 w-48">Alamat</th>
-              <th className="p-4 w-40">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-neutral-300 border-y border-slate-300">
-            {customers.map((customer) => (
-              <tr key={customer.customer_id}>
-                <td className="p-4">{customer.customer_id}</td>
+    <div className="flex items-center justify-center">
+      <div className="rounded-sm w-full sm:w-4/5 p-2 overflow-x-auto">
+        <div className="min-w-[640px]">
+          <table className="table-fixed w-full text-left text-slate-600 inter-300">
+            <thead className="inter-300 border-y border-slate-300 bg-slate-100 text-slate-700">
+              <tr>
+                <th className="p-4 w-20">ID</th>
+                <th className="p-4 w-48">Nama</th>
+                <th className="p-4 w-48">No. HP</th>
+                <th className="p-4 w-48">Alamat</th>
+                <th className="p-4 w-40">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-neutral-300 border-y border-slate-300">
+              {customers.map((customer) => (
+                <tr key={customer.customer_id}>
+                  <td className="p-4">{customer.customer_id}</td>
 
-                {/* Jika baris ini sedang diedit, tampilkan input */}
-                {editId === customer.customer_id ? (
-                  <>
-                    <InputEdit
-                      value={editData.name}
-                      onChange={(e) =>
-                        handleInputChange('name', e.target.value)
-                      }
-                    />
-                    <InputEdit
-                      value={editData.phone}
-                      onChange={(e) =>
-                        handleInputChange('phone', e.target.value)
-                      }
-                    />
-                    <InputEdit
-                      value={editData.address}
-                      onChange={(e) =>
-                        handleInputChange('address', e.target.value)
-                      }
-                    />
-                  </>
-                ) : (
-                  <>
-                    <td className="p-4">{customer.name}</td>
-                    <td className="p-4">{customer.phone}</td>
-                    <td className="p-4">{customer.address}</td>
-                  </>
-                )}
-
-                <td className="p-4 flex gap-2">
+                  {/* Jika baris ini sedang diedit, tampilkan input */}
                   {editId === customer.customer_id ? (
-                    <ButtonSave onClick={handleSaveClick} />
-                  ) : (
                     <>
-                      <ButtonEdit onClick={() => handleEditClick(customer)} />
-                      <ButtonDelete
-                        onClick={() => handleDeleteClick(customer.customer_id)}
+                      <InputEdit
+                        value={editData.name}
+                        onChange={(e) =>
+                          handleInputChange('name', e.target.value)
+                        }
+                      />
+                      <InputEdit
+                        value={editData.phone}
+                        onChange={(e) =>
+                          handleInputChange('phone', e.target.value)
+                        }
+                      />
+                      <InputEdit
+                        value={editData.address}
+                        onChange={(e) =>
+                          handleInputChange('address', e.target.value)
+                        }
                       />
                     </>
+                  ) : (
+                    <>
+                      <td className="p-4">{customer.name}</td>
+                      <td className="p-4">{customer.phone}</td>
+                      <td className="p-4">{customer.address}</td>
+                    </>
                   )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
 
-        {error && <div className="p-4 text-pink-600 inter-300">{error}</div>}
+                  <td className="p-4 flex gap-2">
+                    {editId === customer.customer_id ? (
+                      <ButtonSave onClick={handleSaveClick} />
+                    ) : (
+                      <>
+                        <ButtonEdit onClick={() => handleEditClick(customer)} />
+                        <ButtonDelete
+                          onClick={() =>
+                            handleDeleteClick(customer.customer_id)
+                          }
+                        />
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-        {/* Tombol muat ulang hanya muncul kalau gak sedang edit */}
-        {!editId && <ButtonFetch onClick={fetchCustomers} />}
+          {error && <div className="p-4 text-pink-600 inter-300">{error}</div>}
+
+          {/* Tombol muat ulang hanya muncul kalau gak sedang edit */}
+          {!editId && <ButtonFetch onClick={fetchCustomers} />}
+        </div>
       </div>
     </div>
   );
