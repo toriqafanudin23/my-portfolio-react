@@ -93,6 +93,38 @@ const CustomerTable = () => {
     }
   };
 
+  const [newCustomer, setNewCustomer] = useState({
+    name: '',
+    phone: '',
+    address: '',
+  });
+  const handleNewCustomerChange = (field, value) => {
+    setNewCustomer((prev) => ({ ...prev, [field]: value }));
+  };
+  const handleAddCustomer = async () => {
+    // Validasi input kosong
+    if (!newCustomer.name || !newCustomer.phone || !newCustomer.address) {
+      alert('Semua kolom harus diisi sebelum menambahkan pelanggan.');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('/customer', newCustomer, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      // Reset form dan ambil ulang data
+      setNewCustomer({ name: '', phone: '', address: '' });
+      fetchCustomers();
+    } catch (error) {
+      console.error(error);
+      alert('Gagal menambahkan pelanggan baru.');
+    }
+  };
+
   return (
     <div className="flex items-center justify-center">
       <div className="rounded-sm w-full sm:w-4/5 p-2 overflow-x-auto">
@@ -101,18 +133,17 @@ const CustomerTable = () => {
             <thead className="inter-300 border-y border-slate-300 bg-slate-100 text-slate-700">
               <tr>
                 <th className="p-4 w-20">ID</th>
-                <th className="p-4 w-48">Nama</th>
-                <th className="p-4 w-48">No. HP</th>
-                <th className="p-4 w-48">Alamat</th>
-                <th className="p-4 w-40">Aksi</th>
+                <th className="p-4 w-48">Name</th>
+                <th className="p-4 w-48">Phone</th>
+                <th className="p-4 w-48">Address</th>
+                <th className="p-4 w-40">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-300 border-y border-slate-300">
+              {/* Baris data pelanggan */}
               {customers.map((customer) => (
                 <tr key={customer.customer_id}>
                   <td className="p-4">{customer.customer_id}</td>
-
-                  {/* Jika baris ini sedang diedit, tampilkan input */}
                   {editId === customer.customer_id ? (
                     <>
                       <InputEdit
@@ -141,7 +172,6 @@ const CustomerTable = () => {
                       <td className="p-4">{customer.address}</td>
                     </>
                   )}
-
                   <td className="p-4 flex gap-2">
                     {editId === customer.customer_id ? (
                       <ButtonSave onClick={handleSaveClick} />
@@ -158,13 +188,47 @@ const CustomerTable = () => {
                   </td>
                 </tr>
               ))}
+
+              {/* Baris input untuk tambah pelanggan baru */}
+              <tr>
+                <td className="p-4 text-center">#</td>
+                <InputEdit
+                  value={newCustomer.name}
+                  onChange={(e) =>
+                    handleNewCustomerChange('name', e.target.value)
+                  }
+                />
+                <InputEdit
+                  value={newCustomer.phone}
+                  onChange={(e) =>
+                    handleNewCustomerChange('phone', e.target.value)
+                  }
+                />
+                <InputEdit
+                  value={newCustomer.address}
+                  onChange={(e) =>
+                    handleNewCustomerChange('address', e.target.value)
+                  }
+                />
+                <td className="p-4">
+                  <button
+                    onClick={handleAddCustomer}
+                    className="bg-white hover:bg-teal-100 text-teal-600 px-4 py-1 rounded border border-teal-500 hover:cursor-pointer"
+                  >
+                    Tambah
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
 
           {error && <div className="p-4 text-pink-600 inter-300">{error}</div>}
 
-          {/* Tombol muat ulang hanya muncul kalau gak sedang edit */}
-          {!editId && <ButtonFetch onClick={fetchCustomers} />}
+          {!editId && (
+            <div className="mt-4">
+              <ButtonFetch onClick={fetchCustomers} />
+            </div>
+          )}
         </div>
       </div>
     </div>
