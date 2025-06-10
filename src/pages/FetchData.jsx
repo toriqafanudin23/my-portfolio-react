@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
+  ButtonAdd,
   ButtonDelete,
   ButtonEdit,
   ButtonFetch,
@@ -210,14 +211,7 @@ const CustomerTable = () => {
                     handleNewCustomerChange('address', e.target.value)
                   }
                 />
-                <td className="p-4">
-                  <button
-                    onClick={handleAddCustomer}
-                    className="bg-white hover:bg-teal-100 text-teal-600 px-4 py-1 rounded border border-teal-500 hover:cursor-pointer"
-                  >
-                    Tambah
-                  </button>
-                </td>
+                <ButtonAdd onClick={handleAddCustomer} />
               </tr>
             </tbody>
           </table>

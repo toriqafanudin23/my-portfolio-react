@@ -58,3 +58,16 @@ export const ButtonSubmit = ({ disabled }) => {
     </button>
   );
 };
+
+export const ButtonAdd = ({ onClick }) => {
+  return (
+    <td className="p-4">
+      <button
+        onClick={onClick}
+        className="bg-white hover:bg-teal-100 text-teal-600 px-4 py-1 rounded border border-teal-500 hover:cursor-pointer text-sm inter-400"
+      >
+        Tambah
+      </button>
+    </td>
+  );
+};
