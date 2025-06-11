@@ -18,11 +18,12 @@ const CustomerTable = () => {
     phone: '',
     address: '',
   });
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchCustomers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/customers/name', {
+      const response = await axios.get(`${apiUrl}/customers/name`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +60,7 @@ const CustomerTable = () => {
   const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`/customer/${editId}`, editData, {
+      await axios.put(`${apiUrl}/customer/${editId}`, editData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -81,7 +82,7 @@ const CustomerTable = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`/customer/${customerId}`, {
+      await axios.delete(`${apiUrl}/customer/${customerId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -111,7 +112,7 @@ const CustomerTable = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('/customer', newCustomer, {
+      await axios.post(`${apiUrl}/customer`, newCustomer, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

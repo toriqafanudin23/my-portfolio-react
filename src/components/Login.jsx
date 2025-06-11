@@ -21,7 +21,9 @@ const LoginPage = () => {
     setError('');
 
     try {
-      const response = await axios.post('/login', formData);
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${apiUrl}/login`, formData);
+
       const { token, username } = response.data;
 
       // Simpan token ke localStorage
