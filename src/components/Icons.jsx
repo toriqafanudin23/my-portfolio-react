@@ -1,15 +1,21 @@
 import { ReactIcon, GoLangIcon, UbuntuIcon, PostgresIcon } from '../path/path';
 
-const TechIcons = () => {
-  console.log('Rendering TechIcons');
+export const TechIcons = () => {
   return (
-    <>
+    <div className="flex flex-row gap-1">
       <ReactIcon size={36} />
       <GoLangIcon size={36} />
       <UbuntuIcon size={36} />
       <PostgresIcon />
-    </>
+    </div>
   );
 };
 
-export default TechIcons;
+export const BasicIcon = () => {
+  return (
+    <div className="flex flex-row gap-1">
+      <ReactIcon size={36} />
+      <UbuntuIcon size={36} />
+    </div>
+  );
+};

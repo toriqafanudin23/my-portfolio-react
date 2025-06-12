@@ -1,6 +1,6 @@
+import { TechIcons } from '../components/Icons';
 import ProjectCard from '../components/ProjectCard';
 import { descCrud, descProjects } from '../path/path';
-import TechIcons from '../components/Icons';
 
 const Projects = ({ scrollToSection, crudRef, ref }) => {
   return (

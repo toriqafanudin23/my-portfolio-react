@@ -50,9 +50,9 @@ function App() {
         scrollToSection={scrollToSection}
         crudRef={crudRef}
       />
-      <Order ref={orderRef} />
       <Education ref={educationRef} />
       <Crud ref={crudRef} />
+      <Order ref={orderRef} />
       <Footer />
     </>
   );

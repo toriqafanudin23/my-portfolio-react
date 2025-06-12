@@ -12,8 +12,8 @@ const Header = ({ onNavigate }) => {
         <ul className="flex justify-center text-lg inter-400 text-white h-full">
           <Bar title="Home" onClick={() => onNavigate('Home')} />
           <Bar title="Projects" onClick={() => onNavigate('Projects')} />
-          <Bar title="Order" onClick={() => onNavigate('Order')} />
           <Bar title="Education" onClick={() => onNavigate('Education')} />
+          <Bar title="Order" onClick={() => onNavigate('Order')} />
         </ul>
       </div>
 
