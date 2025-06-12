@@ -8,8 +8,9 @@ const Crud = ({ ref }) => {
         Project 1: CRUD Data Management
       </h1>
       <p className="text-gray-600 max-w-[700px] mx-auto inter-300 sm:text-xl text-md text-center pb-10">
-        Sebelum Anda dapat melakukan manipulasi data, silakan login terlebih
-        dahulu untuk mendapatkan Bearer Token.
+        Sementara Anda hanya bisa melakukan manipulasi data berupa edit data dan
+        juga delete data. Untuk bisa insert data, Anda diharuskan login terlebih
+        dahulu.
       </p>
 
       <LoginPage />

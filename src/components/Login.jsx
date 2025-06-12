@@ -30,7 +30,7 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('username', username);
 
-      alert('Login berhasil! Tekan "Muat Ulang" agar data muncul!');
+      alert('Login berhasil! Sekarang Anda bisa insert data!');
       // Redirect bisa dilakukan di sini (jika pakai react-router)
       // navigate("/dashboard");
     } catch (err) {
@@ -50,7 +50,7 @@ const LoginPage = () => {
             type="text"
             value={formData.username}
             onChange={handleChange}
-            placeholder="Masukan username (admin)"
+            placeholder="Masukan username..."
           />
           <InputLogin
             htmlFor="password"
@@ -58,7 +58,7 @@ const LoginPage = () => {
             type="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Masukkan password (1234)"
+            placeholder="Masukkan password..."
           />
           {error && (
             <p className="text-pink-500 inter-400 text-sm mb-4">{error}</p>

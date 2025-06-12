@@ -18,16 +18,12 @@ const CustomerTable = () => {
     phone: '',
     address: '',
   });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchCustomers = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${apiUrl}/customers/name`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(`${apiUrl}/customers/name`);
       setCustomers(response.data.data);
       setError('');
       setEditId(null);
@@ -40,8 +36,15 @@ const CustomerTable = () => {
   };
 
   useEffect(() => {
-    // fetchCustomers();
-    localStorage.removeItem('token');
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+
+    fetchCustomers();
+    // localStorage.removeItem('token');
   }, []);
 
   const handleEditClick = (customer) => {
@@ -59,13 +62,7 @@ const CustomerTable = () => {
 
   const handleSaveClick = async () => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`${apiUrl}/customer/${editId}`, editData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      await axios.put(`${apiUrl}/customer/${editId}`, editData);
       // Setelah sukses update, refresh data pelanggan dan reset edit mode
       fetchCustomers();
     } catch (err) {
@@ -81,12 +78,7 @@ const CustomerTable = () => {
     if (!confirmed) return;
 
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`${apiUrl}/customer/${customerId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(`${apiUrl}/customer/${customerId}`);
       alert('Pelanggan berhasil dihapus.');
       fetchCustomers(); // refresh tabel setelah delete
     } catch (error) {
@@ -123,7 +115,7 @@ const CustomerTable = () => {
       fetchCustomers();
     } catch (error) {
       console.error(error);
-      alert('Gagal menambahkan pelanggan baru.');
+      alert('Gagal menambahkan pelanggan baru, login terlebih dahulu!');
     }
   };
 
@@ -192,28 +184,30 @@ const CustomerTable = () => {
               ))}
 
               {/* Baris input untuk tambah pelanggan baru */}
-              <tr>
-                <td className="p-4 text-center">#</td>
-                <InputEdit
-                  value={newCustomer.name}
-                  onChange={(e) =>
-                    handleNewCustomerChange('name', e.target.value)
-                  }
-                />
-                <InputEdit
-                  value={newCustomer.phone}
-                  onChange={(e) =>
-                    handleNewCustomerChange('phone', e.target.value)
-                  }
-                />
-                <InputEdit
-                  value={newCustomer.address}
-                  onChange={(e) =>
-                    handleNewCustomerChange('address', e.target.value)
-                  }
-                />
-                <ButtonAdd onClick={handleAddCustomer} />
-              </tr>
+              {isLoggedIn && (
+                <tr>
+                  <td className="p-4 text-center">#</td>
+                  <InputEdit
+                    value={newCustomer.name}
+                    onChange={(e) =>
+                      handleNewCustomerChange('name', e.target.value)
+                    }
+                  />
+                  <InputEdit
+                    value={newCustomer.phone}
+                    onChange={(e) =>
+                      handleNewCustomerChange('phone', e.target.value)
+                    }
+                  />
+                  <InputEdit
+                    value={newCustomer.address}
+                    onChange={(e) =>
+                      handleNewCustomerChange('address', e.target.value)
+                    }
+                  />
+                  <ButtonAdd onClick={handleAddCustomer} />
+                </tr>
+              )}
             </tbody>
           </table>
 
