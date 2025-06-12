@@ -56,12 +56,12 @@ export const Order = ({ ref }) => {
       ref={ref}
       className="flex flex-col items-center justify-center w-full mx-auto text-center px-4 py-32 bg-slate-50"
     >
-      <h1 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-slate-700 to-slate-500 bg-clip-text text-transparent mb-4">
+      <h1 className="text-3xl sm:text-4xl font-semibold text-slate-800 mb-6">
         Bangun Aplikasimu Bersama Kami!
       </h1>
 
       <p className="text-gray-600 max-w-2xl mx-auto text-md sm:text-xl mb-8">
-        Siap untuk memulai bisnismu? Pilih paket terbaik sesuai kebutuhanmu dan
+        Siap untuk memulai bisnis? Pilih paket terbaik sesuai kebutuhanmu dan
         nikmati promo spesial. Hubungi kami melalui WhatsApp untuk konsultasi
         terlebih dahulu!
       </p>
@@ -133,7 +133,7 @@ export const Order = ({ ref }) => {
             </div>
 
             <ul
-              className={`text-sm sm:text-base space-y-2 mb-6 w-full px-4 ${
+              className={`space-y-2 mb-6 w-full px-4 ${
                 pkg.recommended
                   ? 'text-slate-600'
                   : pkg.name === 'Paket Basic'
@@ -148,7 +148,7 @@ export const Order = ({ ref }) => {
                 return (
                   <li key={i} className="flex items-start gap-2">
                     <span
-                      className={`text-lg font-bold ${
+                      className={`font-bold ${
                         isNegative ? 'text-red-500' : 'text-green-600'
                       }`}
                     >
