@@ -18,7 +18,6 @@ const CustomerTable = () => {
     phone: '',
     address: '',
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchCustomers = async () => {
@@ -36,13 +35,6 @@ const CustomerTable = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-
     fetchCustomers();
     // localStorage.removeItem('token');
   }, []);
@@ -184,30 +176,29 @@ const CustomerTable = () => {
               ))}
 
               {/* Baris input untuk tambah pelanggan baru */}
-              {isLoggedIn && (
-                <tr>
-                  <td className="p-4 text-center">#</td>
-                  <InputEdit
-                    value={newCustomer.name}
-                    onChange={(e) =>
-                      handleNewCustomerChange('name', e.target.value)
-                    }
-                  />
-                  <InputEdit
-                    value={newCustomer.phone}
-                    onChange={(e) =>
-                      handleNewCustomerChange('phone', e.target.value)
-                    }
-                  />
-                  <InputEdit
-                    value={newCustomer.address}
-                    onChange={(e) =>
-                      handleNewCustomerChange('address', e.target.value)
-                    }
-                  />
-                  <ButtonAdd onClick={handleAddCustomer} />
-                </tr>
-              )}
+
+              <tr>
+                <td className="p-4 text-center">#</td>
+                <InputEdit
+                  value={newCustomer.name}
+                  onChange={(e) =>
+                    handleNewCustomerChange('name', e.target.value)
+                  }
+                />
+                <InputEdit
+                  value={newCustomer.phone}
+                  onChange={(e) =>
+                    handleNewCustomerChange('phone', e.target.value)
+                  }
+                />
+                <InputEdit
+                  value={newCustomer.address}
+                  onChange={(e) =>
+                    handleNewCustomerChange('address', e.target.value)
+                  }
+                />
+                <ButtonAdd onClick={handleAddCustomer} />
+              </tr>
             </tbody>
           </table>
 
