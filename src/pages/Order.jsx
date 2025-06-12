@@ -4,7 +4,7 @@ import { BasicIcon, TechIcons } from '../components/Icons';
 const packages = [
   {
     name: 'Paket Basic',
-    priceBefore: 'Rp1.200.000',
+    // priceBefore: 'Rp1.200.000',
     price: 'Rp1.000.000',
     features: [
       '1 Platform (Mobile/Web)',
@@ -56,7 +56,7 @@ export const Order = ({ ref }) => {
       ref={ref}
       className="flex flex-col items-center justify-center w-full mx-auto text-center px-4 py-32 bg-slate-50"
     >
-      <h1 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-slate-700 to-teal-500 bg-clip-text text-transparent mb-4">
+      <h1 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-slate-700 to-slate-500 bg-clip-text text-transparent mb-4">
         Bangun Aplikasimu Bersama Kami!
       </h1>
 
@@ -93,7 +93,7 @@ export const Order = ({ ref }) => {
           >
             {pkg.recommended && (
               <div className="absolute -top-4 right-4 px-4 py-1 text-sm font-semibold text-white bg-amber-500 rounded-full shadow">
-                Rekomendasi
+                Diskon 25%
               </div>
             )}
 
