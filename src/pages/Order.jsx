@@ -60,7 +60,7 @@ export const Order = ({ ref }) => {
         Bangun Aplikasimu Bersama Kami!
       </h1>
 
-      <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg mb-8">
+      <p className="text-gray-600 max-w-2xl mx-auto text-md sm:text-xl mb-8">
         Siap untuk memulai bisnismu? Pilih paket terbaik sesuai kebutuhanmu dan
         nikmati promo spesial. Hubungi kami melalui WhatsApp untuk konsultasi
         terlebih dahulu!
@@ -71,7 +71,7 @@ export const Order = ({ ref }) => {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-full shadow transition font-medium"
+          className="flex items-center gap-2 bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 rounded-full shadow transition font-medium"
         >
           <MessageCircle size={20} />
           Chat via WhatsApp

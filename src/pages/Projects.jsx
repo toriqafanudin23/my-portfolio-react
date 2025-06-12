@@ -13,7 +13,7 @@ const Projects = ({ scrollToSection, crudRef, ref }) => {
         <h1 className="text-3xl sm:text-4xl font-semibold text-slate-800 mb-6">
           Projects
         </h1>
-        <p className="text-gray-600 max-w-[700px] mx-auto inter-300 text-lg">
+        <p className="text-gray-600 max-w-[700px] mx-auto inter-300 sm:text-xl text-md">
           {descProjects}
         </p>
 
