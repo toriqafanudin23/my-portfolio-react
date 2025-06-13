@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { InputLogin } from './Inputs';
 import { ButtonSubmit } from './Buttons';
+import { loginSchema } from '../validations/login';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -20,19 +21,22 @@ const LoginPage = () => {
     setLoading(true);
     setError('');
 
+    const parse = loginSchema.safeParse(formData);
+    if (!parse.success) {
+      setError(parse.error.errors[0].message);
+      setLoading(false);
+      return;
+    }
+
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
       const response = await axios.post(`${apiUrl}/login`, formData);
 
       const { token, username } = response.data;
-
-      // Simpan token ke localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('username', username);
 
-      alert('Login berhasil! Sekarang Anda bisa insert data!');
-      // Redirect bisa dilakukan di sini (jika pakai react-router)
-      // navigate("/dashboard");
+      alert('Login berhasil!');
     } catch (err) {
       setError('Username atau password salah!');
     } finally {

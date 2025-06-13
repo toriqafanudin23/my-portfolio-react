@@ -9,6 +9,9 @@ import {
 } from '../components/Buttons';
 import { InputEdit } from '../components/Inputs';
 
+const isValidName = (name) => /^[A-Za-z\s]{4,}$/.test(name);
+const isValidPhone = (phone) => /^[0-9]{11,13}$/.test(phone);
+
 const CustomerTable = () => {
   const [customers, setCustomers] = useState([]);
   const [error, setError] = useState('');
@@ -53,10 +56,21 @@ const CustomerTable = () => {
   };
 
   const handleSaveClick = async () => {
+    const { name, phone } = editData;
+
+    if (!isValidName(name)) {
+      alert('Nama harus minimal 4 huruf dan tidak boleh mengandung angka.');
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      alert('Nomor HP harus angka dan antara 11 hingga 13 digit.');
+      return;
+    }
+
     try {
       await axios.put(`${apiUrl}/customer/${editId}`, editData);
-      // Setelah sukses update, refresh data pelanggan dan reset edit mode
-      fetchCustomers();
+      fetchCustomers(); // refresh data
     } catch (err) {
       console.error(err);
       setError('Gagal memperbarui data pelanggan');
@@ -88,9 +102,20 @@ const CustomerTable = () => {
     setNewCustomer((prev) => ({ ...prev, [field]: value }));
   };
   const handleAddCustomer = async () => {
-    // Validasi input kosong
-    if (!newCustomer.name || !newCustomer.phone || !newCustomer.address) {
+    const { name, phone, address } = newCustomer;
+
+    if (!name || !phone || !address) {
       alert('Semua kolom harus diisi sebelum menambahkan pelanggan.');
+      return;
+    }
+
+    if (!isValidName(name)) {
+      alert('Nama harus minimal 4 huruf dan tidak boleh mengandung angka.');
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      alert('Nomor HP harus angka dan antara 11 hingga 13 digit.');
       return;
     }
 
@@ -102,7 +127,6 @@ const CustomerTable = () => {
           'Content-Type': 'application/json',
         },
       });
-      // Reset form dan ambil ulang data
       setNewCustomer({ name: '', phone: '', address: '' });
       fetchCustomers();
     } catch (error) {
