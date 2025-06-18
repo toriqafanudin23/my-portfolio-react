@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Order } from './pages/Order';
 import { Education } from './pages/Education';
 import Crud from './pages/Crud';
+import MindARViewer from './pages/WebAR';
 
 function App() {
   const homeRef = useRef(null);
@@ -53,6 +54,7 @@ function App() {
       <Education ref={educationRef} />
       <Crud ref={crudRef} />
       <Order ref={orderRef} />
+      <MindARViewer />
       <Footer />
     </>
   );
