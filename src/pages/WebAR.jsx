@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -22,7 +22,8 @@ export default function MindARViewer() {
 
       const mindarThree = new window.MINDAR.IMAGE.MindARThree({
         container: containerRef.current,
-        imageTargetSrc: '/targets.mind', // path di public/
+        imageTargetSrc:
+          'https://vmhsaugkciussfknmyaq.supabase.co/storage/v1/object/public/glb-bucket/targets.mind',
       });
 
       const { renderer, scene, camera } = mindarThree;
@@ -32,11 +33,14 @@ export default function MindARViewer() {
       scene.add(light);
 
       const loader = new GLTFLoader();
-      loader.load('/animasi-jaring.glb', (gltf) => {
-        const model = gltf.scene;
-        model.scale.set(0.5, 0.5, 0.5);
-        anchor.group.add(model);
-      });
+      loader.load(
+        'https://vmhsaugkciussfknmyaq.supabase.co/storage/v1/object/public/glb-bucket/animasi-jaring.glb',
+        (gltf) => {
+          const model = gltf.scene;
+          model.scale.set(0.5, 0.5, 0.5);
+          anchor.group.add(model);
+        }
+      );
 
       await mindarThree.start();
 
