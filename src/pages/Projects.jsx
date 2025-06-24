@@ -27,7 +27,7 @@ const Projects = ({ scrollToSection, crudRef, ref, galleryRef }) => {
 
           <ProjectCard
             title="My Gallery"
-            description="Fitur upload dan menampilkan gambar seperti media sosial, menggunakan React, Golang, dan Supabase untuk penyimpanan image. Project ini bisa sebagai pengganti Google Drive."
+            description="Fitur upload dan menampilkan gambar seperti media sosial, menggunakan React, Golang, dan Supabase untuk penyimpanan image. Project ini bisa menggantikan Google Drive."
             icon={<TechIcons />}
             onClick={() => scrollToSection(galleryRef)}
           />
