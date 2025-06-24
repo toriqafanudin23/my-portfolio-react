@@ -2,7 +2,7 @@ import { TechIcons } from '../components/Icons';
 import ProjectCard from '../components/ProjectCard';
 import { descCrud, descProjects } from '../path/path';
 
-const Projects = ({ scrollToSection, crudRef, ref }) => {
+const Projects = ({ scrollToSection, crudRef, ref, galleryRef }) => {
   return (
     <section
       id="projects"
@@ -23,6 +23,13 @@ const Projects = ({ scrollToSection, crudRef, ref }) => {
             description={descCrud}
             icon={<TechIcons />}
             onClick={() => scrollToSection(crudRef)}
+          />
+
+          <ProjectCard
+            title="My Gallery"
+            description="Fitur upload dan galeri gambar seperti media sosial, menggunakan React, Golang, dan Supabase untuk penyimpanan database."
+            icon={<TechIcons />}
+            onClick={() => scrollToSection(galleryRef)}
           />
         </div>
       </div>

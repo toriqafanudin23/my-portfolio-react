@@ -14,6 +14,7 @@ function App() {
   const educationRef = useRef(null);
   const orderRef = useRef(null);
   const crudRef = useRef(null);
+  const galleryRef = useRef(null);
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -39,6 +40,8 @@ function App() {
             case 'CRUD':
               scrollToSection(crudRef);
               break;
+            case 'Gallery':
+              scrollToSection(galleryRef);
             default:
               break;
           }
@@ -50,10 +53,11 @@ function App() {
         ref={projectsRef}
         scrollToSection={scrollToSection}
         crudRef={crudRef}
+        galleryRef={galleryRef}
       />
       <Education ref={educationRef} />
       <Crud ref={crudRef} />
-      <UploadImages />
+      <UploadImages ref={galleryRef} />
       <Order ref={orderRef} />
       <Footer />
     </>

@@ -34,7 +34,12 @@ const StaticGallery = ({ imageNames, onDeleteSuccess }) => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-xl font-bold mb-4 text-center">My Gallery</h1>
+      <h1 className="text-center text-3xl sm:text-4xl font-semibold text-slate-800 mb-6">
+        Project 2: My Gallery
+      </h1>
+      <p className="text-gray-600 max-w-[700px] mx-auto inter-300 sm:text-xl text-md text-center pb-10">
+        Anda bisa melakukan upload dan hapus image layaknya media sosial!
+      </p>
       <div className="grid grid-cols-3 gap-2">
         {imageNames.map((name, index) => (
           <div

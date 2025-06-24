@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../client/supabase';
 import StaticGallery from '../components/TampilkanImages';
 
-const UploadImages = () => {
+const UploadImages = ({ ref }) => {
   const [uploading, setUploading] = useState(false);
   const [url, setUrl] = useState(null);
   const [imageNames, setImageNames] = useState([]);
@@ -83,7 +83,10 @@ const UploadImages = () => {
   };
 
   return (
-    <div className="flex items-center justify-center my-20 w-full flex-col">
+    <section
+      ref={ref}
+      className="flex items-center justify-center my-20 w-full flex-col pt-32"
+    >
       <StaticGallery imageNames={imageNames} onDeleteSuccess={fetchImages} />
 
       <div className="col-span-full sm:w-3xl">
@@ -134,7 +137,7 @@ const UploadImages = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
