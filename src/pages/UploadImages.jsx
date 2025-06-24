@@ -6,6 +6,7 @@ const UploadImages = ({ ref }) => {
   const [uploading, setUploading] = useState(false);
   const [url, setUrl] = useState(null);
   const [imageNames, setImageNames] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -87,7 +88,52 @@ const UploadImages = ({ ref }) => {
       ref={ref}
       className="flex items-center justify-center my-20 w-full flex-col pt-32"
     >
-      <StaticGallery imageNames={imageNames} onDeleteSuccess={fetchImages} />
+      <StaticGallery
+        imageNames={imageNames}
+        onDeleteSuccess={fetchImages}
+        onImageClick={(url) => setSelectedImage(url)}
+      />
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-center justify-center animate-fadeIn"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative max-w-[90vw] max-h-[90vh] rounded-lg overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()} // supaya klik gambar tidak menutup modal
+          >
+            {/* Tombol close */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 z-10 hover:cursor-pointer"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Gambar */}
+            <img
+              src={selectedImage}
+              alt="Preview"
+              className="w-full h-full object-contain max-h-[90vh] bg-black"
+            />
+          </div>
+        </div>
+      )}
 
       <div className="col-span-full sm:w-3xl">
         <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -125,13 +171,19 @@ const UploadImages = ({ ref }) => {
             <p className="text-xs/5 text-gray-600">PNG, JPG up to 5MB</p>
 
             {url && (
-              <div className="mt-4">
-                <p className="text-sm">Uploaded Image:</p>
-                <img
-                  src={url}
-                  alt="Uploaded"
-                  className="mt-2 w-48 mx-auto rounded"
-                />
+              <div className="mt-6">
+                <h2 className="text-center text-sm font-medium text-gray-600 mb-2">
+                  Uploaded Image:
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+                  <div className="w-full aspect-square overflow-hidden">
+                    <img
+                      src={url}
+                      alt="Uploaded"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>
