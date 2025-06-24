@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Order } from './pages/Order';
 import { Education } from './pages/Education';
 import Crud from './pages/Crud';
+import UploadImages from './pages/UploadImages';
 
 function App() {
   const homeRef = useRef(null);
@@ -52,6 +53,7 @@ function App() {
       />
       <Education ref={educationRef} />
       <Crud ref={crudRef} />
+      <UploadImages />
       <Order ref={orderRef} />
       <Footer />
     </>
