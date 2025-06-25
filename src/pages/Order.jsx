@@ -54,7 +54,7 @@ export const Order = ({ ref }) => {
   return (
     <section
       ref={ref}
-      className="flex flex-col items-center justify-center w-full mx-auto text-center px-4 py-32 bg-slate-50"
+      className="flex flex-col items-center justify-center w-full mx-auto text-center px-4 py-32"
     >
       <h1 className="text-3xl sm:text-4xl font-semibold text-slate-800 mb-6">
         Bangun Aplikasimu Bersama Kami!

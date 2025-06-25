@@ -50,7 +50,7 @@ const certifications = [
 
 export const Education = ({ ref }) => {
   return (
-    <section ref={ref} className="py-32 px-6 bg-teal-50">
+    <section ref={ref} className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold text-teal-800 mb-4 text-center">
           Certification
