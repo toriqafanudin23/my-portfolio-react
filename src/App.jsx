@@ -7,6 +7,7 @@ import { Order } from './pages/Order';
 import { Education } from './pages/Education';
 import Crud from './pages/Crud';
 import UploadImages from './pages/UploadImages';
+import UjiCobaAR from './pages/UjiAR';
 
 function App() {
   const homeRef = useRef(null);
@@ -59,6 +60,7 @@ function App() {
       <Crud ref={crudRef} />
       <UploadImages ref={galleryRef} />
       <Order ref={orderRef} />
+      <UjiCobaAR />
       <Footer />
     </>
   );
